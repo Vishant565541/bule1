@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* ─── Dark-mode variant ────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Design tokens ───────────────────────────────── */
+@theme {
+  --color-primary:        #1a2f5e;
+  --color-primary-light:  #233867;
+  --color-secondary:      #7db82f;
+  --color-secondary-light:#94c434;
+  --color-accent:         #f97316;
+}
+
+/* ─── Base ────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Thin, GPU-composited scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: #7db82f; border-radius: 99px; }
+}
+
+/* ─── Components ──────────────────────────────────── */
+@layer components {
+
+  /* Glass card */
+  .glass {
+    background-color: rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+  .dark .glass {
+    background-color: rgba(15,23,42,0.85);
+    border-color: rgba(255,255,255,0.08);
+  }
+
+  /* Section pill label */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-secondary-light);
+    background: rgba(125,184,47,0.1);
+    padding: 5px 14px;
+    border-radius: 99px;
+    border: 1px solid rgba(125,184,47,0.22);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #94c434, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hero overlay — pure CSS, no extra element needed */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(26,47,94,0.65) 0%,
+      rgba(26,47,94,0.45) 50%,
+      rgba(26,47,94,0.88) 100%
+    );
+  }
+
+  /* Card hover lift — cheap transform, no layout shift */
+  .card-lift {
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                box-shadow 0.3s ease;
+    will-change: transform;
+  }
+  .card-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 48px rgba(0,0,0,0.12);
+  }
+
+  /* Gradient border on hover (GPU-layer trick) */
+  .gradient-border { position: relative; border-radius: 1rem; }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #94c434, #3b82f6, #1a2f5e);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+  }
+  .gradient-border:hover::before { opacity: 1; }
+
+  /* Primary CTA button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--color-secondary);
+    color: #fff;
+    font-weight: 700;
+    padding: 14px 30px;
+    border-radius: 9999px;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 4px 16px rgba(125,184,47,0.25);
+    will-change: transform;
+  }
+  .btn-primary:hover {
+    background: var(--color-secondary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(125,184,47,0.35);
+  }
+
+  /* Outline button (white, on dark backgrounds) */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: #fff;
+    font-weight: 700;
+    padding: 14px 30px;
+    border-radius: 9999px;
+    border: 2px solid rgba(255,255,255,0.38);
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+    will-change: transform;
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.65);
+    transform: translateY(-2px);
+  }
+
+  /* Animated nav link underline */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 2px;
+    background: var(--color-secondary-light);
+    border-radius: 99px;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after { width: 100%; }
+
+  /* CSS-only scroll indicator */
+  @keyframes scroll-dot {
+    0%, 100% { transform: translateY(0); opacity: 0.8; }
+    50%       { transform: translateY(10px); opacity: 0.3; }
+  }
+  .scroll-dot { animation: scroll-dot 2s ease-in-out infinite; }
+
+  /* Dot grid background — single pseudo element, no extra DOM */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgba(125,184,47,0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Grid line background */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(125,184,47,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125,184,47,0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
