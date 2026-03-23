@@ -93,11 +93,7 @@ export default function Projects() {
       desc: 'The civil works for the 220KV substation have been successfully completed as per design and quality standards. The scope included construction of equipment foundations, control room building, cable trenches, transformer foundations, boundary wall, drainage system, internal roads, and other associated civil structures.\n\nAll works were executed with strict adherence to safety, quality, and timeline requirements, ensuring readiness for electrical installation and commissioning.',
       status: 'Completed',
       image: '/images/projects/substation-220kv-kintech.png',
-<<<<<<< HEAD
-    },
-=======
     }
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
   ];
 
   const filteredProjects = filter === 'All' ? projects : projects.filter(p => p.category === filter);

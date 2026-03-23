@@ -1,53 +1,12 @@
 'use client';
 
-<<<<<<< HEAD
-import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Target, Building2, ChevronRight, Star, Users, CheckCircle2, TrendingUp } from 'lucide-react';
-=======
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Zap, Target, Building2, ChevronRight, Star, Users, CheckCircle2, TrendingUp, ChevronLeft } from 'lucide-react';
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
 import Link from 'next/link';
 import Image from 'next/image';
 import { fadeUp, stagger } from '@/lib/animations';
 
-<<<<<<< HEAD
-export default function Home() {
-  const stats = [
-    { value: '15+', label: 'Projects Delivered', icon: <TrendingUp className="w-5 h-5" /> },
-    { value: '100%', label: 'Safety Compliance', icon: <CheckCircle2 className="w-5 h-5" /> },
-    { value: '10+', label: 'Years Experience', icon: <Star className="w-5 h-5" /> },
-    { value: 'Pan', label: 'India Execution', icon: <Users className="w-5 h-5" /> },
-  ];
-
-  const services = [
-    {
-      title: 'Power Substation',
-      icon: <Zap className="w-7 h-7" />,
-      desc: 'End-to-end power substation development, design, and infrastructure solutions.',
-      color: 'from-blue-500/20 to-blue-600/5',
-    },
-    {
-      title: 'WTG Infrastructure',
-      icon: <Target className="w-7 h-7" />,
-      desc: 'Wind Turbine Generator infrastructure, cabling, and approach road construction.',
-      color: 'from-secondary/25 to-secondary/5',
-    },
-    {
-      title: 'Civil Construction',
-      icon: <Building2 className="w-7 h-7" />,
-      desc: 'RCC & CC road work, crane platform construction, and pipeline networks.',
-      color: 'from-orange-500/20 to-orange-600/5',
-    },
-  ];
-
-  const testimonials = [
-    { name: 'Rajesh M.', role: 'Project Director', text: 'BlueNeck Energy delivered our substation on time and within budget. Exceptional quality.', rating: 5 },
-    { name: 'Anita S.', role: 'Operations Manager', text: 'Their safety standards and professionalism set them apart in the industry.', rating: 5 },
-    { name: 'Vikram P.', role: 'Site Engineer', text: "The team's WTG infrastructure expertise is unmatched across Gujarat.", rating: 5 },
-  ];
-=======
 const stats = [
   { value: '15+', label: 'Projects Delivered', icon: <TrendingUp className="w-5 h-5" /> },
   { value: '100%', label: 'Safety Compliance', icon: <CheckCircle2 className="w-5 h-5" /> },
@@ -159,7 +118,6 @@ export default function Home() {
     setIsAutoPlaying(false);
     setCurrentSlide((prev) => (prev - 1 + workGallery.length) % workGallery.length);
   };
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
 
   return (
     <>
@@ -353,8 +311,6 @@ export default function Home() {
         </div>
       </section>
 
-<<<<<<< HEAD
-=======
       {/* ─── COMPANY WORK GALLERY ─────────────────────────── */}
       <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -472,7 +428,6 @@ export default function Home() {
         </div>
       </section>
 
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
       {/* ─── TESTIMONIALS ─────────────────────────────────── */}
       <section className="py-24 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -486,21 +441,13 @@ export default function Home() {
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {testimonials.map((t, i) => (
               <motion.div key={i} variants={fadeUp} className="bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300 relative">
-<<<<<<< HEAD
-                <div className="absolute top-5 right-7 text-6xl text-secondary/10 font-serif leading-none select-none">"</div>
-=======
                 <div className="absolute top-5 right-7 text-6xl text-secondary/10 font-serif leading-none select-none">&ldquo;</div>
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
                 <div className="flex gap-1 mb-4">
                   {[...Array(t.rating)].map((_, j) => (
                     <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-<<<<<<< HEAD
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm relative z-10">"{t.text}"</p>
-=======
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm relative z-10">&ldquo;{t.text}&rdquo;</p>
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-blue-500 flex items-center justify-center text-white font-bold text-sm">
                     {t.name.charAt(0)}
@@ -529,11 +476,7 @@ export default function Home() {
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-black text-white mb-5 leading-tight">
-<<<<<<< HEAD
-              Let's Build India's <span className="text-secondary-light">Future Together</span>
-=======
               Let&apos;s Build India&apos;s <span className="text-secondary-light">Future Together</span>
->>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
             </motion.h2>
             <motion.p variants={fadeUp} className="text-xl text-blue-100/80 mb-10 font-light">
               Partner with India's leading EPC contractor for your next infrastructure project.
