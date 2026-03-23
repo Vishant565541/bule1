@@ -54,3 +54,16 @@ ehthumbs.db
 # ─── Misc ────────────────────────────────────────────
 *.pem
 *.log
+<<<<<<< HEAD
+=======
+pic/
+*.jpeg
+*.jpg
+*.png
+!public/**
+!src/**/images/**
+remove_bg.py
+remove_bg_new.py
+AGENTS.md
+CLAUDE.md
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)

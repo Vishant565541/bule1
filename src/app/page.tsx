@@ -1,11 +1,18 @@
 'use client';
 
+<<<<<<< HEAD
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Target, Building2, ChevronRight, Star, Users, CheckCircle2, TrendingUp } from 'lucide-react';
+=======
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Zap, Target, Building2, ChevronRight, Star, Users, CheckCircle2, TrendingUp, ChevronLeft } from 'lucide-react';
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
 import Link from 'next/link';
 import Image from 'next/image';
 import { fadeUp, stagger } from '@/lib/animations';
 
+<<<<<<< HEAD
 export default function Home() {
   const stats = [
     { value: '15+', label: 'Projects Delivered', icon: <TrendingUp className="w-5 h-5" /> },
@@ -40,6 +47,119 @@ export default function Home() {
     { name: 'Anita S.', role: 'Operations Manager', text: 'Their safety standards and professionalism set them apart in the industry.', rating: 5 },
     { name: 'Vikram P.', role: 'Site Engineer', text: "The team's WTG infrastructure expertise is unmatched across Gujarat.", rating: 5 },
   ];
+=======
+const stats = [
+  { value: '15+', label: 'Projects Delivered', icon: <TrendingUp className="w-5 h-5" /> },
+  { value: '100%', label: 'Safety Compliance', icon: <CheckCircle2 className="w-5 h-5" /> },
+  { value: '10+', label: 'Years Experience', icon: <Star className="w-5 h-5" /> },
+  { value: 'Pan', label: 'India Execution', icon: <Users className="w-5 h-5" /> },
+];
+
+const services = [
+  {
+    title: 'Power Substation',
+    icon: <Zap className="w-7 h-7" />,
+    desc: 'End-to-end power substation development, design, and infrastructure solutions.',
+    color: 'from-blue-500/20 to-blue-600/5',
+  },
+  {
+    title: 'WTG Infrastructure',
+    icon: <Target className="w-7 h-7" />,
+    desc: 'Wind Turbine Generator infrastructure, cabling, and approach road construction.',
+    color: 'from-secondary/25 to-secondary/5',
+  },
+  {
+    title: 'Civil Construction',
+    icon: <Building2 className="w-7 h-7" />,
+    desc: 'RCC & CC road work, crane platform construction, and pipeline networks.',
+    color: 'from-orange-500/20 to-orange-600/5',
+  },
+];
+
+const testimonials = [
+  { name: 'Rajesh M.', role: 'Project Director', text: 'BlueNeck Energy delivered our substation on time and within budget. Exceptional quality.', rating: 5 },
+  { name: 'Anita S.', role: 'Operations Manager', text: 'Their safety standards and professionalism set them apart in the industry.', rating: 5 },
+  { name: 'Vikram P.', role: 'Site Engineer', text: "The team's WTG infrastructure expertise is unmatched across Gujarat.", rating: 5 },
+];
+
+const workGallery = [
+  {
+    title: 'High-Voltage Substation Grid',
+    category: 'Power EPC',
+    image: '/images/work/work-1.jpeg',
+    description: 'Complete electrical infrastructure and grid connectivity solutions.'
+  },
+  {
+    title: 'Wind Turbine Erection',
+    category: 'Renewable Energy',
+    image: '/images/work/work-2.jpeg',
+    description: 'Precision lifting and assembly of wind turbine components.'
+  },
+  {
+    title: 'WTG Infrastructure Development',
+    category: 'Civil Works',
+    image: '/images/work/work-3.jpeg',
+    description: 'Strategic planning and infrastructure for wind energy farms.'
+  },
+  {
+    title: 'Proactive Safety Culture',
+    category: 'HSE Excellence',
+    image: '/images/work/work-4.jpeg',
+    description: 'Daily safety briefings and rigorous standards for field operations.'
+  },
+  {
+    title: 'Precision Groundwork',
+    category: 'Civil Engineering',
+    image: '/images/work/work-5.jpeg',
+    description: 'Advanced site marking and trenching for robust foundation systems.'
+  },
+  {
+    title: 'Sustainable Energy Grid',
+    category: 'Green Energy',
+    image: '/images/work/work-6.jpeg',
+    description: 'Enabling sustainable power distribution across regional networks.'
+  },
+  {
+    title: 'Large-Scale Utility Pipeline',
+    category: 'Pipeline EPC',
+    image: '/images/work/work-7.jpeg',
+    description: 'Precision pipeline networks for industrial and utility applications.'
+  },
+  {
+    title: 'Infrastructure Maintenance',
+    category: 'Services',
+    image: '/images/work/work-8.jpeg',
+    description: 'Ongoing maintenance and optimization for energy infrastructure.'
+  },
+];
+
+export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % workGallery.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const nextSlide = () => {
+    setIsAutoPlaying(false);
+    setCurrentSlide((prev) => (prev + 1) % workGallery.length);
+  };
+
+  const prevSlide = () => {
+    setIsAutoPlaying(false);
+    setCurrentSlide((prev) => (prev - 1 + workGallery.length) % workGallery.length);
+  };
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
 
   return (
     <>
@@ -233,6 +353,126 @@ export default function Home() {
         </div>
       </section>
 
+<<<<<<< HEAD
+=======
+      {/* ─── COMPANY WORK GALLERY ─────────────────────────── */}
+      <section className="py-24 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            variants={stagger} 
+            viewport={{ once: true }} 
+            className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+          >
+            <div className="max-w-2xl">
+              <motion.div variants={fadeUp}><span className="section-label">On-Site Operations</span></motion.div>
+              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3">
+                Company Work <span className="text-gradient">Gallery</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="mt-4 text-slate-600 dark:text-slate-400">
+                A visual showcase of our technical expertise and commitment to safety across India's most demanding infrastructure environments.
+              </motion.p>
+            </div>
+            <motion.div variants={fadeUp}>
+              <Link href="/projects" className="btn-outline">Browse All Projects</Link>
+            </motion.div>
+          </motion.div>
+
+          {!isMounted ? (
+            <div className="rounded-[3rem] bg-slate-100 dark:bg-slate-800 h-[400px] md:h-[600px] animate-pulse" />
+          ) : (
+            <div className="relative group/slider">
+              <div className="overflow-hidden rounded-[3rem] relative bg-slate-100 dark:bg-slate-800 h-[400px] md:h-[600px] shadow-2xl">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, scale: 1.05, x: 20 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, x: -20 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={workGallery[currentSlide].image}
+                      alt={workGallery[currentSlide].title}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                    
+                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="max-w-2xl"
+                      >
+                        <span className="text-secondary font-bold text-sm uppercase tracking-[0.2em] mb-4 block">
+                          {workGallery[currentSlide].category}
+                        </span>
+                        <h3 className="text-white font-black text-3xl md:text-5xl mb-4 leading-tight">
+                          {workGallery[currentSlide].title}
+                        </h3>
+                        <p className="text-slate-300 text-lg font-light max-w-xl leading-relaxed">
+                          {workGallery[currentSlide].description}
+                        </p>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Progress Bar */}
+                <div className="absolute bottom-0 left-0 h-1.5 bg-white/20 w-full z-20 overflow-hidden">
+                  {isAutoPlaying && (
+                    <motion.div 
+                      key={currentSlide}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 5, ease: "linear" }}
+                      className="absolute inset-0 bg-secondary"
+                    />
+                  )}
+                </div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button 
+                onClick={prevSlide}
+                className="absolute left-4 md:-left-8 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 z-30 shadow-xl opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 -translate-x-4 md:group-hover/slider:-translate-x-2"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button 
+                onClick={nextSlide}
+                className="absolute right-4 md:-right-8 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 z-30 shadow-xl opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 translate-x-4 md:group-hover/slider:translate-x-2"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              {/* Indicators */}
+              <div className="flex justify-center gap-3 mt-10">
+                {workGallery.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setIsAutoPlaying(false);
+                      setCurrentSlide(i);
+                    }}
+                    className={`transition-all duration-500 rounded-full h-1.5 ${
+                      currentSlide === i ? 'bg-secondary w-10' : 'bg-slate-300 dark:bg-slate-700 w-2 hover:bg-secondary/40'
+                    }`}
+                    aria-label={`Go to slide ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
       {/* ─── TESTIMONIALS ─────────────────────────────────── */}
       <section className="py-24 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,13 +486,21 @@ export default function Home() {
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {testimonials.map((t, i) => (
               <motion.div key={i} variants={fadeUp} className="bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300 relative">
+<<<<<<< HEAD
                 <div className="absolute top-5 right-7 text-6xl text-secondary/10 font-serif leading-none select-none">"</div>
+=======
+                <div className="absolute top-5 right-7 text-6xl text-secondary/10 font-serif leading-none select-none">&ldquo;</div>
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
                 <div className="flex gap-1 mb-4">
                   {[...Array(t.rating)].map((_, j) => (
                     <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
+<<<<<<< HEAD
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm relative z-10">"{t.text}"</p>
+=======
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm relative z-10">&ldquo;{t.text}&rdquo;</p>
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-blue-500 flex items-center justify-center text-white font-bold text-sm">
                     {t.name.charAt(0)}
@@ -281,7 +529,11 @@ export default function Home() {
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-black text-white mb-5 leading-tight">
+<<<<<<< HEAD
               Let's Build India's <span className="text-secondary-light">Future Together</span>
+=======
+              Let&apos;s Build India&apos;s <span className="text-secondary-light">Future Together</span>
+>>>>>>> 9369efa (feat: implement dynamic gallery with framer-motion and cleanup projects page)
             </motion.h2>
             <motion.p variants={fadeUp} className="text-xl text-blue-100/80 mb-10 font-light">
               Partner with India's leading EPC contractor for your next infrastructure project.
