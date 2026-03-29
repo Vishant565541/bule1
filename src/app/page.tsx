@@ -105,7 +105,7 @@ export default function Home() {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % workGallery.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
@@ -340,13 +340,13 @@ export default function Home() {
           ) : (
             <div className="relative group/slider">
               <div className="overflow-hidden rounded-[3rem] relative bg-slate-100 dark:bg-slate-800 h-[400px] md:h-[600px] shadow-2xl">
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="sync">
                   <motion.div
                     key={currentSlide}
-                    initial={{ opacity: 0, scale: 1.05, x: 20 }}
-                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 0.95, x: -20 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, scale: 1.03 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.03 }}
+                    transition={{ duration: 0.4, ease: 'easeInOut' }}
                     className="absolute inset-0"
                   >
                     <Image
@@ -360,9 +360,9 @@ export default function Home() {
                     
                     <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
                       <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
+                        transition={{ delay: 0.15, duration: 0.35, ease: 'easeOut' }}
                         className="max-w-2xl"
                       >
                         <span className="text-secondary font-bold text-sm uppercase tracking-[0.2em] mb-4 block">
@@ -386,7 +386,7 @@ export default function Home() {
                       key={currentSlide}
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
-                      transition={{ duration: 5, ease: "linear" }}
+                      transition={{ duration: 4, ease: "linear" }}
                       className="absolute inset-0 bg-secondary"
                     />
                   )}

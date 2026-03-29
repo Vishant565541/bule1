@@ -130,6 +130,105 @@ export default function About() {
         </div>
       </section>
 
+      {/* ─── DIRECTOR DETAILS ────────────────────────────── */}
+      <section className="py-28 bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-100 dark:from-slate-950 dark:via-blue-950/20 dark:to-slate-900 relative overflow-hidden">
+        {/* Decorative blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="section-label">Leadership</span>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3">
+              Meet Our <span className="text-gradient">Director</span>
+            </h2>
+            <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg max-w-xl mx-auto">
+              Visionary leadership driving excellence across every project we deliver.
+            </p>
+          </motion.div>
+
+          {/* Director Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="relative p-1 rounded-3xl bg-gradient-to-br from-secondary/60 via-blue-500/40 to-primary/60">
+              <div className="relative rounded-[22px] bg-white dark:bg-slate-900 overflow-hidden">
+                {/* Inner decorative glow */}
+                <div className="absolute top-0 right-0 w-72 h-72 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-56 h-56 bg-blue-500/5 rounded-full blur-2xl pointer-events-none" />
+
+                <div className="relative flex flex-col md:flex-row items-center md:items-start gap-10 p-10 md:p-14">
+                  {/* Photo */}
+                  <div className="flex-shrink-0 flex flex-col items-center gap-4">
+                    <div className="relative">
+                      {/* Glow ring */}
+                      <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-secondary via-blue-500 to-primary blur-md opacity-60" />
+                      <div className="relative w-52 h-52 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl">
+                        <Image
+                          src="/images/director.jpeg"
+                          alt="Er. Harshdeep Singh – Managing Director & Co-Founder"
+                          fill
+                          className="object-cover object-top"
+                          sizes="208px"
+                          priority
+                        />
+                      </div>
+                    </div>
+                    {/* Badge */}
+                    <span className="inline-flex items-center gap-2 bg-gradient-to-r from-secondary to-blue-600 text-white text-xs font-bold px-5 py-2 rounded-full shadow-lg tracking-wide uppercase">
+                      <Award className="w-3.5 h-3.5" /> Co-Founder
+                    </span>
+                  </div>
+
+                  {/* Details */}
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white leading-tight mb-1">
+                      Er. Harshdeep Singh
+                    </h3>
+                    <p className="text-secondary font-semibold text-lg mb-6 tracking-wide">
+                      Managing Director &amp; Co-Founder
+                    </p>
+
+                    {/* Divider */}
+                    <div className="w-16 h-1 rounded-full bg-gradient-to-r from-secondary to-blue-500 mb-6 mx-auto md:mx-0" />
+
+                    <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
+                      A Civil Engineer with core expertise in Substation and Wind Energy projects, leading
+                      the organization with a vision for excellence, strong execution, and sustainable growth.
+                      He plays a key role in driving strategic direction and delivering high-quality
+                      infrastructure solutions.
+                    </p>
+
+                    {/* Expertise pills */}
+                    <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                      {['Substation Projects', 'Wind Energy', 'Civil Engineering', 'Strategic Leadership', 'Infrastructure'].map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-4 py-1.5 rounded-full text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-secondary/50 hover:text-secondary transition-colors duration-200"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ─── ABOUT DETAIL ────────────────────────────────── */}
       <section className="py-0 pb-28 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
