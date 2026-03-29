@@ -136,7 +136,7 @@ const Footer = () => {
                 >
                   <MapPin className="w-4 h-4 mt-0.5 text-secondary flex-shrink-0" />
                   <span className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
-                    Near old marketing yard gate no. 2<br />RAJKOT, GUJARAT 360003<br />India
+                    Near old marketing yard gate no. 2<br />Rajkot, Gujarat 360003<br />India
                   </span>
                 </a>
               </li>

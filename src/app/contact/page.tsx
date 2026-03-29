@@ -40,7 +40,7 @@ export default function Contact() {
       icon: <MapPin className="w-6 h-6" />,
       title: 'Visit Us',
       color: 'from-orange-400 to-rose-600',
-      lines: ['Near old marketing yard gate no. 2', 'RAJKOT, GUJARAT 360003', 'India'],
+      lines: ['Near old marketing yard gate no. 2', 'Rajkot, Gujarat 360003', 'India'],
       link: 'https://maps.google.com/?q=Near+old+marketing+yard+gate+no.+2,+Rajkot,+Gujarat,+360003,+India',
     },
     {

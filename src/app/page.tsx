@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Zap, Target, Building2, ChevronRight, Star, Users, CheckCircle2, TrendingUp, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
@@ -96,27 +96,48 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Auto-advance every 2.5 s
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % workGallery.length);
-    }, 4000);
+    }, 2500);
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
-  const nextSlide = () => {
+  // Pause autoplay and resume after 6 s of inactivity
+  const pauseAndResume = useCallback(() => {
     setIsAutoPlaying(false);
-    setCurrentSlide((prev) => (prev + 1) % workGallery.length);
-  };
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => setIsAutoPlaying(true), 6000);
+  }, []);
 
-  const prevSlide = () => {
-    setIsAutoPlaying(false);
+  const nextSlide = useCallback(() => {
+    pauseAndResume();
+    setCurrentSlide((prev) => (prev + 1) % workGallery.length);
+  }, [pauseAndResume]);
+
+  const prevSlide = useCallback(() => {
+    pauseAndResume();
     setCurrentSlide((prev) => (prev - 1 + workGallery.length) % workGallery.length);
+  }, [pauseAndResume]);
+
+  // Touch/swipe support
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? nextSlide() : prevSlide();
+    touchStartX.current = null;
   };
 
   return (
@@ -339,85 +360,102 @@ export default function Home() {
             <div className="rounded-[3rem] bg-slate-100 dark:bg-slate-800 h-[400px] md:h-[600px] animate-pulse" />
           ) : (
             <div className="relative group/slider">
-              <div className="overflow-hidden rounded-[3rem] relative bg-slate-100 dark:bg-slate-800 h-[400px] md:h-[600px] shadow-2xl">
-                <AnimatePresence mode="sync">
-                  <motion.div
-                    key={currentSlide}
-                    initial={{ opacity: 0, scale: 1.03 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.03 }}
-                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+              <div
+                className="overflow-hidden rounded-[3rem] relative bg-slate-900 h-[400px] md:h-[600px] shadow-2xl"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
+                {/* Pre-render all slides; only active one is visible — zero pop-in */}
+                {workGallery.map((slide, i) => (
+                  <div
+                    key={slide.image}
                     className="absolute inset-0"
+                    style={{
+                      opacity: i === currentSlide ? 1 : 0,
+                      transform: i === currentSlide ? 'scale(1)' : 'scale(1.04)',
+                      transition: 'opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1)',
+                      zIndex: i === currentSlide ? 2 : 1,
+                    }}
                   >
                     <Image
-                      src={workGallery[currentSlide].image}
-                      alt={workGallery[currentSlide].title}
+                      src={slide.image}
+                      alt={slide.title}
                       fill
                       className="object-cover"
-                      priority
+                      priority={i === 0}
+                      loading={i === 0 ? 'eager' : 'lazy'}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                    
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16">
-                      <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15, duration: 0.35, ease: 'easeOut' }}
-                        className="max-w-2xl"
-                      >
-                        <span className="text-secondary font-bold text-sm uppercase tracking-[0.2em] mb-4 block">
-                          {workGallery[currentSlide].category}
-                        </span>
-                        <h3 className="text-white font-black text-3xl md:text-5xl mb-4 leading-tight">
-                          {workGallery[currentSlide].title}
-                        </h3>
-                        <p className="text-slate-300 text-lg font-light max-w-xl leading-relaxed">
-                          {workGallery[currentSlide].description}
-                        </p>
-                      </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                  </div>
+                ))}
+
+                {/* Caption — animated on slide change */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 z-10"
+                  >
+                    <div className="max-w-2xl">
+                      <span className="text-secondary font-bold text-sm uppercase tracking-[0.2em] mb-4 block">
+                        {workGallery[currentSlide].category}
+                      </span>
+                      <h3 className="text-white font-black text-3xl md:text-5xl mb-4 leading-tight">
+                        {workGallery[currentSlide].title}
+                      </h3>
+                      <p className="text-slate-300 text-lg font-light max-w-xl leading-relaxed">
+                        {workGallery[currentSlide].description}
+                      </p>
                     </div>
                   </motion.div>
                 </AnimatePresence>
 
                 {/* Progress Bar */}
-                <div className="absolute bottom-0 left-0 h-1.5 bg-white/20 w-full z-20 overflow-hidden">
+                <div className="absolute bottom-0 left-0 h-1 bg-white/15 w-full z-20 overflow-hidden">
                   {isAutoPlaying && (
-                    <motion.div 
+                    <motion.div
                       key={currentSlide}
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 4, ease: "linear" }}
+                      initial={{ width: '0%' }}
+                      animate={{ width: '100%' }}
+                      transition={{ duration: 2.5, ease: 'linear' }}
                       className="absolute inset-0 bg-secondary"
                     />
                   )}
                 </div>
               </div>
 
-              {/* Navigation Buttons */}
-              <button 
+              {/* Navigation Buttons — always visible on mobile, hover on desktop */}
+              <button
                 onClick={prevSlide}
-                className="absolute left-4 md:-left-8 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 z-30 shadow-xl opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 -translate-x-4 md:group-hover/slider:-translate-x-2"
+                aria-label="Previous slide"
+                className="absolute left-3 md:-left-7 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-200 z-30 shadow-xl md:opacity-0 md:group-hover/slider:opacity-100 md:-translate-x-2 md:group-hover/slider:translate-x-0"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
               </button>
-              <button 
+              <button
                 onClick={nextSlide}
-                className="absolute right-4 md:-right-8 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 z-30 shadow-xl opacity-0 group-hover/slider:opacity-100 group-hover/slider:translate-x-0 translate-x-4 md:group-hover/slider:translate-x-2"
+                aria-label="Next slide"
+                className="absolute right-3 md:-right-7 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-white/15 backdrop-blur-xl border border-white/25 rounded-2xl flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-200 z-30 shadow-xl md:opacity-0 md:group-hover/slider:opacity-100 md:translate-x-2 md:group-hover/slider:translate-x-0"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
-              {/* Indicators */}
-              <div className="flex justify-center gap-3 mt-10">
+              {/* Dot Indicators */}
+              <div className="flex justify-center gap-2.5 mt-8">
                 {workGallery.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => {
-                      setIsAutoPlaying(false);
+                      pauseAndResume();
                       setCurrentSlide(i);
                     }}
-                    className={`transition-all duration-500 rounded-full h-1.5 ${
-                      currentSlide === i ? 'bg-secondary w-10' : 'bg-slate-300 dark:bg-slate-700 w-2 hover:bg-secondary/40'
+                    className={`transition-all duration-300 rounded-full h-1.5 ${
+                      currentSlide === i
+                        ? 'bg-secondary w-10'
+                        : 'bg-slate-300 dark:bg-slate-700 w-2 hover:bg-secondary/50'
                     }`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
