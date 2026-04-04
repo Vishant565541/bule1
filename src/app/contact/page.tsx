@@ -26,7 +26,7 @@ export default function Contact() {
       icon: <Phone className="w-6 h-6" />,
       title: 'Call Us',
       color: 'from-blue-400 to-indigo-600',
-      lines: ['+91-7770803338', '+91-9099455690', '+91-9099555551'],
+      lines: ['+91-7770803338', '+91-9099455690', '+91-9737653795'],
       link: 'tel:+917770803338',
     },
     {

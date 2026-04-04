@@ -35,11 +35,7 @@ const services = [
   },
 ];
 
-const testimonials = [
-  { name: 'Rajesh M.', role: 'Project Director', text: 'BlueNeck Energy delivered our substation on time and within budget. Exceptional quality.', rating: 5 },
-  { name: 'Anita S.', role: 'Operations Manager', text: 'Their safety standards and professionalism set them apart in the industry.', rating: 5 },
-  { name: 'Vikram P.', role: 'Site Engineer', text: "The team's WTG infrastructure expertise is unmatched across Gujarat.", rating: 5 },
-];
+
 
 const workGallery = [
   {
@@ -466,40 +462,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ─────────────────────────────────── */}
-      <section className="py-24 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial="hidden" whileInView="visible" variants={stagger} viewport={{ once: true }} className="text-center mb-14">
-            <motion.div variants={fadeUp}><span className="section-label">Client Testimonials</span></motion.div>
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3">
-              Trusted by <span className="text-gradient">Industry Leaders</span>
-            </motion.h2>
-          </motion.div>
 
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-7">
-            {testimonials.map((t, i) => (
-              <motion.div key={i} variants={fadeUp} className="bg-slate-50 dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300 relative">
-                <div className="absolute top-5 right-7 text-6xl text-secondary/10 font-serif leading-none select-none">&ldquo;</div>
-                <div className="flex gap-1 mb-4">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 text-sm relative z-10">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary to-blue-500 flex items-center justify-center text-white font-bold text-sm">
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900 dark:text-white text-sm">{t.name}</p>
-                    <p className="text-slate-400 text-xs">{t.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ─── CTA ──────────────────────────────────────────── */}
       <section className="py-24 relative overflow-hidden">
