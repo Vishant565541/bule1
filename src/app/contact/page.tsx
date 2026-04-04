@@ -164,7 +164,7 @@ export default function Contact() {
                       label="Full Name"
                       id="name"
                       type="text"
-                      placeholder="Rajesh Mehta"
+                      placeholder="Name"
                       value={formData.name}
                       onChange={(v) => setFormData(p => ({ ...p, name: v }))}
                       required
@@ -173,7 +173,7 @@ export default function Contact() {
                       label="Email Address"
                       id="email"
                       type="email"
-                      placeholder="rajesh@example.com"
+                      placeholder="Email"
                       value={formData.email}
                       onChange={(v) => setFormData(p => ({ ...p, email: v }))}
                       required
@@ -184,7 +184,7 @@ export default function Contact() {
                       label="Phone Number"
                       id="phone"
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="Number"
                       value={formData.phone}
                       onChange={(v) => setFormData(p => ({ ...p, phone: v }))}
                     />
@@ -192,7 +192,7 @@ export default function Contact() {
                       label="Subject"
                       id="subject"
                       type="text"
-                      placeholder="Project Enquiry"
+                      placeholder="Subject"
                       value={formData.subject}
                       onChange={(v) => setFormData(p => ({ ...p, subject: v }))}
                       required
