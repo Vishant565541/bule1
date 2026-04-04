@@ -73,6 +73,50 @@ export default function About() {
         </div>
       </section>
 
+      {/* ─── PARENT COMPANY ───────────────────────────────── */}
+      <section className="py-14 bg-gradient-to-r from-slate-900 via-primary to-blue-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-10" />
+        <div className="absolute top-0 left-1/3 w-72 h-72 bg-secondary/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-blue-400/15 rounded-full blur-[80px] pointer-events-none" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
+          className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        >
+          <p className="text-secondary font-bold text-xs uppercase tracking-[0.25em] mb-3">
+            Part of a Trusted Group
+          </p>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-snug">
+            A Private Company Under the Umbrella of
+          </h2>
+
+          {/* Badge */}
+          <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-8 py-5 mt-2 shadow-2xl">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary to-green-500 flex items-center justify-center shadow-lg flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <div className="text-left">
+              <p className="text-white font-black text-2xl md:text-3xl tracking-wide leading-none">
+                SHIV SHAKTI
+              </p>
+              <p className="text-secondary-light font-bold text-lg md:text-xl tracking-widest uppercase">
+                ENTERPRISES
+              </p>
+            </div>
+          </div>
+
+          <p className="text-slate-300 text-base mt-6 max-w-xl mx-auto leading-relaxed">
+            BlueNeck Energy operates as a private company under the esteemed banner of
+            Shiv Shakti Enterprises — a group committed to excellence in infrastructure and energy.
+          </p>
+        </motion.div>
+      </section>
+
       {/* ─── VISION & MISSION ─────────────────────────────── */}
       <section className="py-28 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
