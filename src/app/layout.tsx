@@ -13,16 +13,16 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'BlueNeck Energy | Trusted EPC Solutions Across India',
-    template: '%s | BlueNeck Energy'
+    default: 'BlueNeck Energy & Infra Pvt. Ltd. | Trusted EPC Solutions Across India',
+    template: '%s | BlueNeck Energy & Infra Pvt. Ltd.'
   },
-  description: 'BlueNeck Energy — India\'s trusted EPC company delivering power substations, WTG infrastructure, civil construction, and pipeline networks. Pan-India execution, 100% safety compliance.',
-  keywords: ['EPC', 'power substation', 'WTG infrastructure', 'civil construction', 'Rajkot', 'Gujarat', 'India', 'BlueNeck Energy'],
+  description: 'BlueNeck Energy & Infra Pvt. Ltd. — India\'s trusted EPC company delivering power substations, WTG infrastructure, civil construction, and pipeline networks. Pan-India execution, 100% safety compliance.',
+  keywords: ['EPC', 'power substation', 'WTG infrastructure', 'civil construction', 'Rajkot', 'Gujarat', 'India', 'BlueNeck Energy & Infra Pvt. Ltd.'],
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    siteName: 'BlueNeck Energy',
-    title: 'BlueNeck Energy | Trusted EPC Solutions Across India',
+    siteName: 'BlueNeck Energy & Infra Pvt. Ltd.',
+    title: 'BlueNeck Energy & Infra Pvt. Ltd. | Trusted EPC Solutions Across India',
     description: 'Comprehensive EPC infrastructure solutions across India.',
   },
 };

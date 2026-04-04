@@ -52,7 +52,7 @@ const Navbar = () => {
             <Link href="/" className="flex items-center group flex-shrink-0">
               <Image
                 src="/main-logo-transparent.png"
-                alt="BlueNeck Energy Logo"
+                alt="BlueNeck Energy & Infra Pvt. Ltd. Logo"
                 width={400}
                 height={120}
                 className="h-12 md:h-14 w-auto object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-105"

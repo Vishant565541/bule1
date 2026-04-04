@@ -156,7 +156,7 @@ export default function Safety() {
                 <span className="text-gradient">Safety First</span>
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                At BlueNeck Energy, our EHS framework isn't a compliance checkbox — it's
+                At BlueNeck Energy & Infra Pvt. Ltd., our EHS framework isn't a compliance checkbox — it's
                 deeply embedded in our company DNA. Every project begins with a comprehensive
                 safety plan before a single piece of equipment moves.
               </p>

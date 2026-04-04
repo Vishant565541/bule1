@@ -176,7 +176,7 @@ export default function Services() {
               viewport={{ once: true }}
               className="lg:w-1/2"
             >
-              <span className="section-label">Why BlueNeck Energy</span>
+              <span className="section-label">Why BlueNeck Energy & Infra Pvt. Ltd.</span>
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-4 mb-6 leading-tight">
                 Your Trusted{' '}
                 <span className="text-gradient">EPC Partner</span>

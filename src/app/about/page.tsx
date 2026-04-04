@@ -58,7 +58,7 @@ export default function About() {
               className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight"
             >
               About{' '}
-              <span className="text-secondary-light">BlueNeck Energy</span>
+              <span className="text-secondary-light">BlueNeck Energy & Infra Pvt. Ltd.</span>
               <br />
               <span className="text-white/80 text-4xl md:text-5xl">Enterprises</span>
             </motion.h1>
@@ -111,7 +111,7 @@ export default function About() {
           </div>
 
           <p className="text-slate-300 text-base mt-6 max-w-xl mx-auto leading-relaxed">
-            BlueNeck Energy operates as a private company under the esteemed banner of
+            BlueNeck Energy & Infra Pvt. Ltd. operates as a private company under the esteemed banner of
             Shiv Shakti Enterprises — a group committed to excellence in infrastructure and energy.
           </p>
         </motion.div>
@@ -290,7 +290,7 @@ export default function About() {
                 <span className="text-gradient">India's Backbone</span>
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                Founded in 2014 in Rajkot, Gujarat, BlueNeck Energy has grown from a local
+                Founded in 2014 in Rajkot, Gujarat, BlueNeck Energy & Infra Pvt. Ltd. has grown from a local
                 civil contractor to a pan-India EPC company trusted by leading energy developers.
               </p>
               <p className="text-base text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">

@@ -63,7 +63,7 @@ const Footer = () => {
             <Link href="/" className="inline-block group">
               <Image
                 src="/main-logo-transparent.png"
-                alt="BlueNeck Energy"
+                alt="BlueNeck Energy & Infra Pvt. Ltd."
                 width={320}
                 height={90}
                 className="h-16 md:h-20 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
@@ -169,7 +169,7 @@ const Footer = () => {
       {/* Bottom bar */}
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-          <p>© {year} BlueNeck Energy. All rights reserved.</p>
+          <p>© {year} BlueNeck Energy & Infra Pvt. Ltd. All rights reserved.</p>
           <p className="text-slate-700">Designed with ❤️ for a better India</p>
         </div>
       </div>

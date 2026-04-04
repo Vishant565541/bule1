@@ -235,7 +235,7 @@ export default function Home() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px]">
                   <Image
                     src="/images/about-image.png"
-                    alt="BlueNeck Energy EPC Project Site"
+                    alt="BlueNeck Energy & Infra Pvt. Ltd. EPC Project Site"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
@@ -263,13 +263,13 @@ export default function Home() {
               className="lg:w-1/2 space-y-5"
             >
               <motion.div variants={fadeUp}>
-                <span className="section-label">About BlueNeck Energy</span>
+                <span className="section-label">About BlueNeck Energy & Infra Pvt. Ltd.</span>
               </motion.div>
               <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
                 EPC Solutions <span className="text-gradient">You Can Trust</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                BlueNeck Energy delivers comprehensive infrastructure solutions across India —
+                BlueNeck Energy & Infra Pvt. Ltd. delivers comprehensive infrastructure solutions across India —
                 power substations, WTG, civil construction, and pipeline networks.
               </motion.p>
               <motion.ul variants={stagger} className="space-y-3 pt-1">
